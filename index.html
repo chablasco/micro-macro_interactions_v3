@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CB Micro-Macro Interactions v2</title>
+  <meta charset="UTF-8" />
+  <title>CB Micro-Macro Interactions v3</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
   <style>
     body {
@@ -33,7 +33,7 @@ function setup() {
 }
 
 function draw() {
-  fill(0, 65); // fade effect
+  fill(0, 25); // Fade effect
   noStroke();
   rect(0, 0, width, height);
 
@@ -48,19 +48,18 @@ function draw() {
 class Particle {
   constructor() {
     this.pos = createVector(random(width), random(height));
-    this.vel = createVector(0, 0);
+    this.vel = createVector();
   }
 
   update() {
-    let x = (this.pos.x - width / 30.0) * 0.05;
+    let x = (this.pos.x - width / 2.0) * 0.05;
     let y = (this.pos.y - height / 2.0) * 0.0005;
 
-    // Multi-wave flow field
-    let fx = sin(TWO_PI * x + t) * cos(TWO_PI * y + t * 0.5)
+    let fx = sin(TWO_PI * 2 * x + t) * cos(PI * y + t * 0.5)
            + sin(x * y + t * 0.3) * 0.5
            + sin(x * 3 + t * 0.7) * 0.3;
 
-    let fy = cos(PI * y - t) * sin(PI * x - t * 0.4)
+    let fy = cos(TWO_PI * y - t) * sin(TWO_PI * x - t * 0.4)
            + cos(x * y - t * 0.5) * 0.05
            + sin(y * 2 - t * 0.6) * 0.03;
 
